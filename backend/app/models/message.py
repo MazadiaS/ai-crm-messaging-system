@@ -49,7 +49,7 @@ class Message(Base):
     sent_at = Column(DateTime, nullable=True)
     approved_at = Column(DateTime, nullable=True)
     scheduled_for = Column(DateTime, nullable=True, index=True)
-    metadata = Column(JSONB, default=dict, nullable=True)  # AI model version, tokens, etc.
+    message_metadata = Column(JSONB, default=dict, nullable=True)  # AI model version, tokens, etc.
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
