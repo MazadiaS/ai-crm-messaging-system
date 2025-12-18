@@ -21,4 +21,5 @@ COPY backend/ .
 EXPOSE 8000
 
 # Start the application (migrations will be run separately if needed)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Railway will override this with startCommand from railway.json
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
