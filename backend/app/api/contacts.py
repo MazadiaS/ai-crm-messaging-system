@@ -23,14 +23,14 @@ router = APIRouter(prefix="/contacts", tags=["Contacts"])
 
 @router.get("", response_model=ContactListResponse)
 async def list_contacts(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    current_user: CurrentUser,
     segment: str | None = None,
     language: str | None = None,
     search: str | None = None,
     has_birthday_this_month: bool | None = None,
     skip: int = 0,
     limit: int = 20,
-    db: Annotated[AsyncSession, Depends(get_db)],
-    current_user: CurrentUser,
 ):
     """List contacts with filtering and pagination"""
 
@@ -195,9 +195,9 @@ async def delete_contact(
 
 @router.post("/import")
 async def import_contacts(
-    file: UploadFile = File(...),
     db: Annotated[AsyncSession, Depends(get_db)],
     current_user: CurrentUser,
+    file: UploadFile = File(...),
 ):
     """Import contacts from CSV file (placeholder for Celery task)"""
 

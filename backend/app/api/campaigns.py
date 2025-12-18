@@ -22,12 +22,12 @@ router = APIRouter(prefix="/campaigns", tags=["Campaigns"])
 
 @router.get("", response_model=CampaignListResponse)
 async def list_campaigns(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    current_user: CurrentUser,
     status: str | None = None,
     occasion_type: str | None = None,
     skip: int = 0,
     limit: int = 20,
-    db: Annotated[AsyncSession, Depends(get_db)],
-    current_user: CurrentUser
 ):
     """List campaigns with filtering and pagination"""
 

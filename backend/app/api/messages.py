@@ -144,14 +144,14 @@ async def create_message_manually(
 
 @router.get("", response_model=MessageListResponse)
 async def list_messages(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    current_user: CurrentUser,
     status: str | None = None,
     occasion_type: str | None = None,
     contact_id: UUID | None = None,
     generated_by: str | None = None,
     skip: int = 0,
     limit: int = 20,
-    db: Annotated[AsyncSession, Depends(get_db)],
-    current_user: CurrentUser
 ):
     """List messages with filtering and pagination"""
 

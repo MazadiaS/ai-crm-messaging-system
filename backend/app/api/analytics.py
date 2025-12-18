@@ -204,9 +204,9 @@ async def get_contacts_by_segment(
 
 @router.get("/messages-timeline")
 async def get_messages_timeline(
-    days: int = 30,
     db: Annotated[AsyncSession, Depends(get_db)],
-    current_user: CurrentUser
+    current_user: CurrentUser,
+    days: int = 30,
 ):
     """Get message creation timeline for the last N days"""
 
