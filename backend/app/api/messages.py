@@ -150,8 +150,8 @@ async def list_messages(
     generated_by: str | None = None,
     skip: int = 0,
     limit: int = 20,
-    db: Annotated[AsyncSession, Depends(get_db)] = Depends(),
-    current_user: CurrentUser = Depends()
+    db: Annotated[AsyncSession, Depends(get_db)],
+    current_user: CurrentUser
 ):
     """List messages with filtering and pagination"""
 
